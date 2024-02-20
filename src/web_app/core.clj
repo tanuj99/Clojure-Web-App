@@ -17,7 +17,7 @@
 
 (comp/defroutes routes
   (comp/GET "/" [] {:status 200
-                    :body "<h1>Homepage</h1>
+                    :body "<h1>Homepage of my Web app</h1>
                              <ul>
                                  <li><a href=\"/echo\">Echo request</a></li>
                                  <li><a href=\"/greeting\">Greeting</a></li>
@@ -36,7 +36,7 @@
 
 #_(def app (wrap-params (wrap-keyword-params routes)))
 (def app
-  (-> routes
+  (-> (fn [req] (routes req))
       wrap-keyword-params
       wrap-params))
 
